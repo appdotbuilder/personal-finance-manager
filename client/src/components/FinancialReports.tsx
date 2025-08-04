@@ -177,14 +177,14 @@ export function FinancialReports({ userId }: FinancialReportsProps) {
                   <div className="flex justify-between items-center p-3 bg-green-50 rounded-lg">
                     <span className="font-medium">💰 Total Income</span>
                     <span className="font-bold text-green-600">
-                      ${monthlySummary.total_income.toLocaleString()}
+                      {new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(monthlySummary.total_income)}
                     </span>
                   </div>
 
                   <div className="flex justify-between items-center p-3 bg-red-50 rounded-lg">
                     <span className="font-medium">💸 Total Expenses</span>
                     <span className="font-bold text-red-600">
-                      ${monthlySummary.total_expense.toLocaleString()}
+                      {new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(monthlySummary.total_expense)}
                     </span>
                   </div>
 
@@ -197,7 +197,7 @@ export function FinancialReports({ userId }: FinancialReportsProps) {
                     <span className={`font-bold ${
                       monthlySummary.balance >= 0 ? 'text-blue-600' : 'text-orange-600'
                     }`}>
-                      ${Math.abs(monthlySummary.balance).toLocaleString()}
+                      {new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(Math.abs(monthlySummary.balance))}
                       {monthlySummary.balance < 0 && (
                         <span className="text-sm ml-1">(deficit)</span>
                       )}
@@ -343,10 +343,10 @@ export function FinancialReports({ userId }: FinancialReportsProps) {
                 <div className="text-2xl mb-2">💰</div>
                 <div className="text-sm text-gray-600">Avg per Transaction</div>
                 <div className="font-bold text-lg">
-                  ${monthlySummary.transaction_count > 0 
+                  {new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(monthlySummary.transaction_count > 0 
                     ? Math.round((monthlySummary.total_income + monthlySummary.total_expense) / monthlySummary.transaction_count)
                     : 0
-                  }
+                  )}
                 </div>
               </div>
               

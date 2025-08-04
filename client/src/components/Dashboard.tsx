@@ -91,7 +91,7 @@ export function Dashboard({ userId }: DashboardProps) {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">
-              ${current_month_summary.total_income.toLocaleString()}
+              {new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(current_month_summary.total_income)}
             </div>
           </CardContent>
         </Card>
@@ -105,7 +105,7 @@ export function Dashboard({ userId }: DashboardProps) {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">
-              ${current_month_summary.total_expense.toLocaleString()}
+              {new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(current_month_summary.total_expense)}
             </div>
           </CardContent>
         </Card>
@@ -127,7 +127,7 @@ export function Dashboard({ userId }: DashboardProps) {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">
-              ${Math.abs(current_month_summary.balance).toLocaleString()}
+              {new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(Math.abs(current_month_summary.balance))}
               {current_month_summary.balance < 0 && (
                 <span className="text-sm ml-2">(deficit)</span>
               )}
@@ -182,7 +182,7 @@ export function Dashboard({ userId }: DashboardProps) {
                     <div className={`font-bold ${
                       transaction.type === 'income' ? 'text-green-600' : 'text-red-600'
                     }`}>
-                      {transaction.type === 'income' ? '+' : '-'}${transaction.amount.toLocaleString()}
+                      {transaction.type === 'income' ? '+' : '-'}{new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(transaction.amount)}
                     </div>
                   </div>
                 ))}
@@ -221,7 +221,7 @@ export function Dashboard({ userId }: DashboardProps) {
                     <span className={`font-bold ${
                       category.type === 'income' ? 'text-green-600' : 'text-red-600'
                     }`}>
-                      ${category.total_amount.toLocaleString()}
+                      {new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(category.total_amount)}
                     </span>
                   </div>
                 ))}
@@ -247,15 +247,15 @@ export function Dashboard({ userId }: DashboardProps) {
                   <div className="flex items-center justify-between mb-2">
                     <h4 className="font-medium">{month.month}</h4>
                     <Badge variant={month.balance >= 0 ? 'default' : 'destructive'}>
-                      Balance: ${month.balance.toLocaleString()}
+                      Balance: {new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(month.balance)}
                     </Badge>
                   </div>
                   <div className="grid grid-cols-2 gap-4 text-sm">
                     <div className="text-green-600">
-                      Income: ${month.income.toLocaleString()}
+                      Income: {new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(month.income)}
                     </div>
                     <div className="text-red-600">
-                      Expenses: ${month.expense.toLocaleString()}
+                      Expenses: {new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(month.expense)}
                     </div>
                   </div>
                 </div>

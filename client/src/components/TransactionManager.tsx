@@ -238,7 +238,7 @@ export function TransactionManager({ userId }: TransactionManagerProps) {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="amount">Amount ($)</Label>
+                <Label htmlFor="amount">Amount (IDR)</Label>
                 <Input
                   id="amount"
                   type="number"
@@ -444,7 +444,7 @@ export function TransactionManager({ userId }: TransactionManagerProps) {
                       <div className={`text-lg font-bold ${
                         transaction.type === 'income' ? 'text-green-600' : 'text-red-600'
                       }`}>
-                        {transaction.type === 'income' ? '+' : '-'}${transaction.amount.toLocaleString()}
+                        {transaction.type === 'income' ? '+' : '-'}{new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(transaction.amount)}
                       </div>
                       <div className="flex space-x-2">
                         <Button
