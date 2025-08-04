@@ -1,16 +1,25 @@
 
+import { db } from '../db';
+import { categoriesTable } from '../db/schema';
 import { type CreateCategoryInput, type Category } from '../schema';
 
-export async function createCategory(input: CreateCategoryInput): Promise<Category> {
-    // This is a placeholder declaration! Real code should be implemented here.
-    // The goal of this handler is to create a new custom category for the user
-    // with validation to ensure category names are unique per user and type.
-    return Promise.resolve({
-        id: 0, // Placeholder ID
+export const createCategory = async (input: CreateCategoryInput): Promise<Category> => {
+  try {
+    // Insert category record
+    const result = await db.insert(categoriesTable)
+      .values({
         user_id: input.user_id,
         name: input.name,
         type: input.type,
-        color: input.color || null,
-        created_at: new Date()
-    } as Category);
-}
+        color: input.color || null
+      })
+      .returning()
+      .execute();
+
+    const category = result[0];
+    return category;
+  } catch (error) {
+    console.error('Category creation failed:', error);
+    throw error;
+  }
+};
